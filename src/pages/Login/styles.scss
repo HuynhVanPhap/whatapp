@@ -1,0 +1,14 @@
+.MuiBox-root.login-wrap {
+    @media (min-width: 1024px) {
+        width: 25%;
+    }
+
+    h3 {
+        padding: 10px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 500;
+        color: #fff;
+        margin-bottom: 15px;
+    }
+}

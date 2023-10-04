@@ -1,0 +1,30 @@
+.input-control {
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.08);
+    width: 100%;
+    color: #fff;
+    height: 50px;
+    border-radius: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: 0.3s;
+    position: relative;
+
+    &:hover,
+    &:focus {
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+}
+
+.icon-wrapper {
+    position: absolute;
+    top: 36%;
+    right: 5%;
+
+    & svg {
+        cursor: pointer;
+    }
+}

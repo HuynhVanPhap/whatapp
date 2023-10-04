@@ -1,0 +1,1 @@
+export { user as userData } from './user';

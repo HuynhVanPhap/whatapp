@@ -1,0 +1,37 @@
+@import '../../styles/mixins.scss';
+
+.app {
+    position: relative;
+    width: 1170px;
+    overflow: hidden;
+    padding: 0;
+    margin: auto;
+    top: 19px;
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 6%), 0 2px 5px 0 rgb(0 0 0 / 20%);
+    height: calc(100vh - 38px);
+    border-radius: 9px;
+
+    @include breakpoint(tablet) {
+        width: 500px;
+    }
+
+    @include breakpoint(ipad) {
+        width: 500px;
+    }
+
+    @include breakpoint(mobile) {
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        border-radius: unset;
+    }
+
+    &::before {
+        display: table;
+        content: '';
+    }
+
+    &::after {
+        clear: both;
+    }
+}
