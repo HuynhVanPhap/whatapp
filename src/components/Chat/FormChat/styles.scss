@@ -1,0 +1,59 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+form {
+    width: 100%;
+    
+    .reply-main {
+        position: relative;
+
+        & > textarea {
+            width: 100%;
+            resize: none;
+            overflow: hidden;
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 40px;
+            outline: none;
+            border: none;
+            box-shadow: none;
+            height: 30px;
+            max-height: 110px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 20px;
+            caret-color: $main-color-weird;
+            color: $main-color-weird;
+        }
+    }
+
+    .reply-main__emoji {
+        position: absolute;
+        bottom: 4px;
+        right: 12px;
+
+        .reply-emoji > svg {
+            color: $main-color-weird !important;
+
+            &:hover {
+                color: $main-color !important;
+            }
+        }
+
+        .emoji-active > svg {
+            color: $main-color !important;
+        }
+    }
+
+    .picker-emoji {
+        position: absolute;
+        z-index: 9999;
+        display: none;
+
+        @include breakpoint(pc) {
+            right: 0px;
+            bottom: 100%;
+            margin-bottom: 2px;
+        }
+    }
+}

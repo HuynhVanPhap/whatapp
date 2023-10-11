@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
 import Avatar from "@/components/Avatar";
+import Message from "@/components/Message";
+import FormChat from "./FormChat";
 import {
-    EmojiIcon,
     MicrophoneIcon,
     SendIcon,
-    CancelIcon
+    CancelIcon,
+    PictureIcon
 } from "@/icons";
 import avatar1 from 'image/avatar/avatar1.png';
 import './styles.scss';
 
 function Chat({ turnOffDisplayMessageChat }) {
+    const handleUpload = () => document.querySelector("input[type=file]").click();
+
     return (
         <div className='wrap'>
             <div className='heading'>
@@ -33,45 +37,28 @@ function Chat({ turnOffDisplayMessageChat }) {
             </div>
 
             <div className="content-wrap" id="conversation">
-                <div className="message-previous">
+                {/* <div className="message-previous">
                     <Link to="/" className="message-previous__text">Show Previous Message!</Link>
-                </div>
+                </div> */}
 
-                <div className="message-body">
-                    <div className="receiver-wrap">
-                        <div className="receiver">
-                            <div className="message-text">
-                                How are you today ?!
-                            </div>
-                            <span className="message-time pullRight">
-                                Sun
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div className="message-body">
-                    <div className="sender-wrap">
-                        <div className="sender pullRight">
-                            <div className="message-text">
-                                I'm fine. Thank you n' you !
-                            </div>
-                            <span className="message-time pullRight">
-                                Sun
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                <Message
+                    avatar={avatar1}
+                    content='Hello ! How are you ?'
+                />
             </div>
 
             <div className="reply-wrap">
-                <div className="reply-wrap__emoji">
-                    <div className="reply-emoji">
-                        <EmojiIcon />
+                <div className="reply-wrap__picture">
+                    <input type='file' style={{display: 'none'}} />
+                    <div className="reply-picture" onClick={handleUpload}>
+                        <PictureIcon />
                     </div>
                 </div>
+
                 <div className="reply-wrap__main">
-                    <textarea className="reply-main"></textarea>
+                    <FormChat />
                 </div>
+                
                 <div className="reply-wrap__recording">
                     <div className="reply-recording">
                         <MicrophoneIcon />

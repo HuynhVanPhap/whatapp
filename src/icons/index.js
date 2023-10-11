@@ -9,3 +9,4 @@ export { default as SendIcon } from './Send';
 export { default as MicrophoneIcon } from './Microphone';
 export { default as CancelIcon } from './Cancel';
 export { default as FacebookIcon } from './Facebook';
+export { default as PictureIcon } from './Picture';
