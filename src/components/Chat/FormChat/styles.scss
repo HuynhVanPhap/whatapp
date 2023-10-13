@@ -7,6 +7,65 @@ form {
     .reply-main {
         position: relative;
 
+        .attach-wrap {
+            height: 80px;
+            background-color: #E4E4D0;
+            border-radius: 15px 15px 0 0;
+            position: absolute;
+            bottom: 100%;
+            width: 100%;
+            padding: 10px;
+            display: inline-flex;
+            gap: 10px;
+            cursor: pointer;
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            .frame-upload {
+                width: 60px;
+                height: 60px;
+                background-color: lightgray;
+                border-radius: 5px;
+
+                &:hover {
+                    background-color: darkgray;
+                }
+
+                & > img {
+                    border-radius: 5px;
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+
+            .plus-upload {
+                padding: 15px;
+
+                & > svg {
+                    font-size: 2em;
+                    color: #6998AB;
+                }
+            }
+
+            .upload {
+                position: relative;
+
+                &-remove {
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: $icon-chat-color-weird;
+                    color: $icon-color;
+                    position: absolute;
+                    top: -6px;
+                    right: -6px;
+                    font-weight: 800;
+                    font-size: 15px;
+                    padding: 4px 7px;
+                }
+            }
+        }
+
         & > textarea {
             width: 100%;
             resize: none;
@@ -21,27 +80,32 @@ form {
             max-height: 110px;
             font-size: 15px;
             font-weight: 700;
-            border-radius: 20px;
+            border-radius: 15px;
             caret-color: $main-color-weird;
             color: $main-color-weird;
+            background-color: #E4E4D0;
         }
+    }
+
+    .cbr > textarea {
+        border-radius: 0 0 15px 15px;
     }
 
     .reply-main__emoji {
         position: absolute;
         bottom: 4px;
-        right: 12px;
+        right: 5px;
 
         .reply-emoji > svg {
-            color: $main-color-weird !important;
+            color: $icon-chat-color !important;
 
             &:hover {
-                color: $main-color !important;
+                color: $icon-chat-color-weird !important;
             }
         }
 
         .emoji-active > svg {
-            color: $main-color !important;
+            color: $icon-chat-color-weird !important;
         }
     }
 
@@ -49,11 +113,22 @@ form {
         position: absolute;
         z-index: 9999;
         display: none;
+        bottom: 100%;
+        width: 100%;
 
         @include breakpoint(pc) {
+            width: unset;
             right: 0px;
             bottom: 100%;
-            margin-bottom: 2px;
+            margin-bottom: 5px;
+        }
+
+        em-emoji-picker {
+            width: 100%;
+            
+            section {
+                width: 100%;
+            }
         }
     }
 }

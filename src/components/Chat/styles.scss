@@ -66,7 +66,7 @@
     height: 60px;
     max-height: 140px;
     width: 100%;
-    background-color: #BCA37F;
+    background-color: #fff;
     padding: 10px 5px 10px 5px !important;
     margin: 0 !important;
     z-index: 1000;
@@ -90,11 +90,11 @@
     .reply-recording > svg,
     .reply-send > svg {
         font-size: 1.3em;
-        color: $icon-color;
+        color: $icon-chat-color;
         cursor: pointer;
 
         &:hover {
-            color: $main-color;
+            color: $icon-chat-color-weird;
         }
     }
 

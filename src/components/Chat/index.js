@@ -1,6 +1,8 @@
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@/components/Avatar";
 import Message from "@/components/Message";
+import { useUploadImage } from '@/hook';
 import FormChat from "./FormChat";
 import {
     MicrophoneIcon,
@@ -12,7 +14,7 @@ import avatar1 from 'image/avatar/avatar1.png';
 import './styles.scss';
 
 function Chat({ turnOffDisplayMessageChat }) {
-    const handleUpload = () => document.querySelector("input[type=file]").click();
+    const [images, fileInputRef, handleSelectFile, handleOnChangeUpload, removeImage] = useUploadImage();
 
     return (
         <div className='wrap'>
@@ -49,14 +51,25 @@ function Chat({ turnOffDisplayMessageChat }) {
 
             <div className="reply-wrap">
                 <div className="reply-wrap__picture">
-                    <input type='file' style={{display: 'none'}} />
-                    <div className="reply-picture" onClick={handleUpload}>
+                    <input
+                        type='file'
+                        name='file'
+                        multiple
+                        style={{display: 'none'}}
+                        ref={fileInputRef}
+                        onChange={handleOnChangeUpload}
+                    />
+                    <div className="reply-picture" onClick={handleSelectFile}>
                         <PictureIcon />
                     </div>
                 </div>
 
                 <div className="reply-wrap__main">
-                    <FormChat />
+                    <FormChat
+                        images={images}
+                        handleSelectFile={handleSelectFile}
+                        removeImage={removeImage}
+                    />
                 </div>
                 
                 <div className="reply-wrap__recording">
