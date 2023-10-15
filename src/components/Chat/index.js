@@ -1,4 +1,3 @@
-import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@/components/Avatar";
 import Message from "@/components/Message";

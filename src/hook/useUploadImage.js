@@ -30,7 +30,13 @@ const useUploadImage = () => {
         );
     }
 
-    return [images, fileInputRef, handleSelectFile, handleOnChangeUpload, removeImage];
+    return [
+        images,
+        fileInputRef,
+        handleSelectFile,
+        handleOnChangeUpload,
+        removeImage
+    ];
 }
 
 export default useUploadImage;

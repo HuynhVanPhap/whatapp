@@ -33,9 +33,19 @@
         height: 95%;
     }
 
+    @include breakpoint(ipad) {
+        height: 95%;
+    }
+
     &::before {
-        display: table;
-        content: ' ';
+        content: "No chat selected yet";
+        position: absolute;
+        font-size: 2em;
+        font-weight: 500;
+        color: #6998AB;
+        right: 20%;
+        top: 50%;
+        z-index: 1;
     }
 
     &>.side {
