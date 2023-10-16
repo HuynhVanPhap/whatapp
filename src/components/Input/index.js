@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { EyeIcon, EyeClosedIcon } from '@/icons';
 import './styles.scss';
 
-function Input({ type, placeholder, icon }) {
+function Input({ name = '', type, placeholder, icon }) {
     const [inputType, setInputType] = useState(type);
 
     const showPassword = () => {
@@ -18,6 +18,7 @@ function Input({ type, placeholder, icon }) {
             <input
                 className='input-control'
                 type={inputType}
+                name={name}
                 placeholder={placeholder}
             />
 

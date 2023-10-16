@@ -96,8 +96,8 @@ button:not(:disabled),
 }
 
 .btn-cyan {
-    border: 1px solid #00ffff;
-    background: #00ffff;
+    border: 1px solid $background-color-send;
+    background: $background-color-send;
     color: #FFF;
 }
 
