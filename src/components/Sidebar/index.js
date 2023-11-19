@@ -1,23 +1,25 @@
-import Avatar from "@/components/Avatar";
-import avatar1 from 'image/avatar/avatar1.png';
+import User from "@/components/User";
 import './styles.scss';
 
-function Sidebar({handleClick}) {
+function Sidebar({ users = [], turnOnDisplayMessageChat}) {
     return (
         <div className='sidebar'>
-            {Array.from({ length: 10 }).map((value, index) => (
-                <div key={index} className='sidebar-body' onClick={handleClick}>
-                    <div className='sidebar-avatar'>
-                        <Avatar name={avatar1} width="50px" height="50px" />
-                    </div>
-                    <div className="sidebar-name">
-                        <span className="nameMeta three-dot">Huynh Van Phap</span>
-                    </div>
-                    <div className="sidebar-time">
-                        <span className="timeMeta">23:10 28/09/2023</span>
-                    </div>
-                </div>
+            {users.sort((userA, userB) => {
+                const a = userA?.lastMessage?.date ?? userA.displayName;
+                const b = userB?.lastMessage?.date ?? userB.displayName;
+                
+                return b - a;
+            }).map((user, index) => (
+                <User
+                    key={user.uid}
+                    user={user}
+                    turnOnDisplayMessageChat={turnOnDisplayMessageChat}
+                />
             ))}
+
+            {users.length === 0 && (
+                <div className="no-found">No data was found</div>
+            )}
         </div>
     );
 }

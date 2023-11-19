@@ -18,6 +18,7 @@ const useUploadImage = () => {
                     {
                         name: files[i].name,
                         url: URL.createObjectURL(files[i]),
+                        file: files[i]
                     },
                 ])
             }
@@ -33,6 +34,7 @@ const useUploadImage = () => {
     return [
         images,
         fileInputRef,
+        setImages,
         handleSelectFile,
         handleOnChangeUpload,
         removeImage
