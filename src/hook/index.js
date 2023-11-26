@@ -1,4 +1,4 @@
-export { default as useUploadImage } from './useUploadImage';
+export { default as useUploadImages } from './useUploadImages';
 export { default as useUploadToFirebase } from './useUploadToFirebase';
 export { default as useUserQuery } from './useUserQuery';
 export { default as useMessageChat } from './useMessageChat';

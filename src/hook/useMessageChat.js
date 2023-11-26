@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { setDoc, doc, updateDoc, serverTimestamp, getDoc } from "firebase/firestore";
+import { doc, updateDoc, serverTimestamp, collection, getCountFromServer } from "firebase/firestore";
 import { db } from '@/config/firebase';
 import { AuthContext, ChatContext } from "@/context";
 
@@ -15,14 +15,9 @@ const useMessageChat = () => {
             : user.uid + currentUser.uid;
 
         try {
-            const res = await getDoc(doc(db, 'chats', combinedId));
-            
-            if (!res.exists()) {
-                // Create a chat in collection
-                await setDoc(doc(db, "chats", combinedId), {
-                    messages: []
-                });
+            const res = await getCountFromServer(collection(db, `chats/${combinedId}/messages`));
 
+            if (res.data().count === 0) {
                 // Create user chats
                 await updateDoc(doc(db, "userChats", currentUser.uid), {
                     [combinedId]: {

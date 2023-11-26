@@ -28,4 +28,7 @@
 * Lấy dữ liệu của một document
 *
 * @onSnapshot()
+* Lấy dữ liệu theo real-time
+
+* @arrayUnion()
 */

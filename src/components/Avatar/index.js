@@ -11,7 +11,7 @@ function Avatar({ name, width, height }) {
                     height={height}
                 >
                 </img>
-                <span className='onlineIcon'></span>
+                {/* <span className='onlineIcon'></span> */}
             </div>
         </div>
     );

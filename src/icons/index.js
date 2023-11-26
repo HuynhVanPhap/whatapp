@@ -12,3 +12,4 @@ export { default as FacebookIcon } from './Facebook';
 export { default as PictureIcon } from './Picture';
 export { default as PlusIcon } from './Plus';
 export { default as LogoutIcon } from './Logout';
+export { default as UserTieIcon } from './UserTie';

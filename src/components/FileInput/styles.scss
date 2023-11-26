@@ -1,0 +1,63 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.image-control {
+    max-width: 100%;
+    height: 80px;
+
+    .image-info {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        
+        &__preview-wrap {
+            width: 11%;
+            position: relative;
+
+            .image-info__preview {
+                cursor: pointer;
+                border-radius: 50%;
+                background-color: #fff;
+                font-size: 30px;
+                width: 80px;
+                height: 80px;
+                text-align: center;
+                position: absolute;
+    
+                &:hover {
+                    background-color: #ededed;
+                }
+    
+                &>svg {
+                    margin-top: 20px;
+                }
+
+                &>img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+        }
+        
+
+        &__name {
+            width: 89%;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: #EDEDEDFF;
+            padding-left: 50px;
+            font-weight: 300;
+            font-size: 13px;
+            padding-top: 34px;
+
+            &>span {
+                width: 195px;
+
+                @include breakpoint(pc) {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

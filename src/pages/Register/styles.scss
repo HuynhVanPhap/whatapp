@@ -1,0 +1,22 @@
+.list-errors {
+    height: 100px;
+    overflow-y: auto;
+    color: red;
+
+    &>p {
+        font-weight: 900;
+    }
+
+    &>dl {
+        font-style: italic;
+        font-weight: 400;
+        font-size: 15px;
+
+        &>dd {
+            display: list-item;
+            list-style-type: "🥹";
+            list-style-position: inside;
+            // padding-inline-start: 1ch;
+        }
+    }
+}

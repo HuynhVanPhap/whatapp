@@ -18,7 +18,22 @@ const Register = () => {
                 <Input type="password" name='password' placeholder="Password" icon='password' />
                 {/* <Input type="password" name='password_confirm' placeholder="Password Confirm" icon='password' /> */}
                 <FileInput name='avatar' />
-                { err && <span>Something went wrong..!</span> }
+                { err && (
+                    <div className='list-errors'>
+                        <p>Something went wrong...!</p>
+                        <dl>
+                            <dt>Tài khoản</dt>
+                            <dd>Không được để trống</dd>
+                            <dd>Đúng định dạng '@'</dd>
+                            <dt>Mật khẩu</dt>
+                            <dd>Không được để trống</dd>
+                            <dd>Phải có chữ in Hoa, số và kí tự đặt biệt</dd>
+                            <dt>Avatar</dt>
+                            <dd>Vui lòng chọn hình ảnh đại diện</dd>
+                            <dd>Chỉ chấp nhận những file tải lên là file hình ảnh</dd>
+                        </dl>
+                    </div>
+                )}
                 <LoginButton title="Sign up" />
             </form>
             <p>You do have an account ? <Link to="/login">Login</Link></p>

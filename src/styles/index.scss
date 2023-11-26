@@ -78,9 +78,9 @@ button:not(:disabled),
     background-repeat: no-repeat;
     background-size: cover;
 
-    @include breakpoint(mobile) {
-        background-image: none;
-    }
+    // @include breakpoint(mobile) {
+    //     background-image: none;
+    // }
 }
 
 .button-control {
@@ -147,4 +147,9 @@ button:not(:disabled),
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.error-text {
+    color: red;
+    font-weight: 400;
 }

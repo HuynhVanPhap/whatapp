@@ -46,12 +46,12 @@ function Home() {
 
             <Grid container className='bottom-wrap'>
                 <Grid item xs={6} className='bottom__direct-by'>
-                    Directed by author : huynhvanphap198@gmail.com
+                    Directed by author : huynhvanphap198@gmail.com - Phone number : +847.7542.5247
                 </Grid>
                 <Grid item xs={6} className='bottom__social'>
-                    <Link to="/">
+                    <a href="https://www.facebook.com/phap.van.58726823" target="_blank" rel="noreferrer">
                         <FacebookIcon />
-                    </Link>
+                    </a>
                 </Grid>
             </Grid>
         </>

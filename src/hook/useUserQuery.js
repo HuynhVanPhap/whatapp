@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { collection, query, where, getDocs, and, or, orderBy} from "firebase/firestore";
+import { collection, query, where, getDocs, and, orderBy} from "firebase/firestore";
 import { AuthContext } from "@/context";
 import { db } from '@/config/firebase';
 import { useString } from "@/hook";
@@ -51,29 +51,6 @@ const useUserQuery = () => {
         // upperName(userName);
         console.log(3);
     }
-
-    // const searchUserChatByName = async () => {
-    //     const userChatsRef = collection(db, 'userChats');
-    //     const upperDisplayName = (userName !== '') ? upperName(userName) : '';
-
-    //     const searchUserChatsQuery = query(
-    //         userChatsRef,
-    //         orderBy('displayName', 'desc')
-    //     );
-
-    //     try {
-    //         const userChatsArr = [];
-    //         const querySnapshot = await getDocs(searchUserChatsQuery);
-
-    //         querySnapshot.forEach((doc) => {
-    //             userChatsArr.push(doc.data());
-    //         });
-
-    //         setUsers(userChatsArr);
-    //     } catch(error) {
-    //         console.log(`Search users's chat had been error : ${error}`);
-    //     }
-    // }
 
     const getUsers = async () => {
         try {

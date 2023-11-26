@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, memo } from "react";
 import Avatar from "@/components/Avatar";
 import Message from "@/components/Message";
-import { useUploadImage, useChat, useScrollToLast, useLastMessage } from '@/hook';
+import { useUploadImages, useChat, useScrollToLast, useLastMessage } from '@/hook';
 import FormChat from "./FormChat";
 import { ChatContext, AuthContext } from "@/context";
-import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, serverTimestamp, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { db, storage } from '@/config/firebase';
 import { v4 as uuid } from "uuid";
+import { debounce } from 'lodash';
 import {
     MicrophoneIcon,
     SendIcon,
@@ -22,16 +23,32 @@ import './styles.scss';
 
 function Chat({ turnOffDisplayMessageChat }) {
     const [text, setText] = useState('');
-    const [images, fileInputRef, setImages, handleSelectFile, handleOnChangeUpload, removeImage] = useUploadImage();
+    const [images, fileInputRef, setImages, handleSelectFile, handleOnChangeUpload, removeImage] = useUploadImages();
     const { data } = useContext(ChatContext);
-    const [messages] = useChat(); // Lấy tất cả dữ liệu của đoạn chat
+    const [messages, loading, loadPreviousMessages, newMessage, lastKey, loadMore] = useChat(); // Lấy tất cả dữ liệu của đoạn chat
     const { currentUser } = useContext(AuthContext);
-    const [ elementToScrollRef ] = useScrollToLast(messages);
+    const [ elementToScrollRef ] = useScrollToLast(newMessage);
     const [ updateSeen ] = useLastMessage();
 
+    // console.log('Chat UI');
+    
     useEffect(() => {
         (data.user?.lastMessage?.isSeen === false) && updateSeen();
     }, []);
+
+    useEffect(() => {
+        const messagesElement = document.querySelector('.messages-wrap');
+
+        messagesElement.addEventListener('scroll', handleScroll);
+
+        if (loadMore && lastKey !== null) {
+            messagesElement.querySelector(`:nth-child(${messagesElement.children.length - 20})`).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        return () => {
+            messagesElement.removeEventListener('scroll', handleScroll);
+        }
+    }, [lastKey]);
 
     const addEmoji = (e) => {
         const codeArray = [];
@@ -52,11 +69,15 @@ function Chat({ turnOffDisplayMessageChat }) {
         }
     }
 
-    const handleScroll = (e) => {
-        if (e.target.scrollTop === 0) {
-            alert('Yo !!!');
+    const handleScroll = async (e) => {
+        if (lastKey !== null) {
+            if (e.target.scrollTop === 0 && loading === false) {
+                await loadPreviousMessages();
+            }
         }
-    }
+
+        return false;
+    };
 
     const handleChangeFormChat = (e) => {
         setText(e.target.value);
@@ -80,23 +101,19 @@ function Chat({ turnOffDisplayMessageChat }) {
                 }));
             }));
 
-            await updateDoc(doc(db, 'chats', data.chatId), {
-                messages: arrayUnion({
-                    id: uuid(),
-                    text,
-                    senderId: currentUser.uid,
-                    date: Timestamp.now(),
-                    images: [...imagesURL]
-                })
+            await setDoc(doc(db, `chats/${data.chatId}/messages`, uuid()), {
+                id: uuid(),
+                text,
+                senderId: currentUser.uid,
+                date: Timestamp.now(),
+                images: [...imagesURL]
             });
         } else {
-            await updateDoc(doc(db, 'chats', data.chatId), {
-                messages: arrayUnion({
-                    id: uuid(),
-                    text,
-                    senderId: currentUser.uid,
-                    date: Timestamp.now()
-                })
+            await setDoc(doc(db, `chats/${data.chatId}/messages`, uuid()), {
+                id: uuid(),
+                text,
+                senderId: currentUser.uid,
+                date: Timestamp.now()
             });
         }
 
@@ -151,13 +168,11 @@ function Chat({ turnOffDisplayMessageChat }) {
             </div>
 
             <div className="content-wrap" id="conversation">
-                {/* <div className="message-previous">
-                    <Link to="/" className="message-previous__text">Show Previous Message!</Link>
-                </div> */}
-                <div className="messages-wrap" ref={elementToScrollRef} onScroll={handleScroll}>
+                <div className="messages-wrap" ref={elementToScrollRef}>
                     {messages.map((message) => (
                         <Message
                             key={message.id}
+                            id={message.id}
                             content={message.text}
                             images={message.images}
                             sender={message.senderId}
@@ -209,4 +224,4 @@ function Chat({ turnOffDisplayMessageChat }) {
     );
 }
 
-export default Chat;
+export default memo(Chat);

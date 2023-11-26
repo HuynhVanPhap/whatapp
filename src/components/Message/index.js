@@ -4,6 +4,7 @@ import Avatar from "@/components/Avatar";
 import './styles.scss';
 
 const Message = ({
+    id,
     content,
     images = [],
     date,
@@ -14,6 +15,7 @@ const Message = ({
 
     return (
         <div
+            id={id}
             className={`message ${sender === currentUser.uid && 'owner'}`}
         >
             {(sender !== currentUser.uid) && (

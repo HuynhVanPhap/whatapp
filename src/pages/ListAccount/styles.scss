@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.listAccount-wrap {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .listAccount-container {
+        width: 500px;
+        height: 500px;
+        overflow: auto;
+
+        &>.account {
+            width: 100%;
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+            margin-bottom: 5px;
+            border: 2px dotted lightgray;
+
+            &>span {
+                padding-left: 10px;
+            }
+        }
+    }
+
+    &>p {
+        color: lightgray;
+        font-weight: 400;
+        text-align: center;
+
+        &>a {
+            color: $icon-chat-color-weird;
+            font-weight: 700;
+        }
+    }
+}

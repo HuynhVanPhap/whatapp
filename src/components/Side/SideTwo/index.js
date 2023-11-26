@@ -15,7 +15,7 @@ function SideTwo({ displayNewChat, toggleDisplayNewChat, turnOnDisplayMessageCha
     const [upperName] = useString();
 
     useEffect(() => {
-        console.log('Bị 2 lần render vào lần truy cập đầu tiên'); // Bị 2 lần render vào lần đầu
+        // console.log('Bị 2 lần render vào lần truy cập đầu tiên'); // Bị 2 lần render vào lần đầu
         displayNewChat && getUsers();
     }, [displayNewChat]);
 
@@ -58,6 +58,7 @@ function SideTwo({ displayNewChat, toggleDisplayNewChat, turnOnDisplayMessageCha
         try {
             const usersArr = [];
             const querySnapshot = await getDocs(searchUsersQuery);
+            
             querySnapshot.forEach((doc) => {
                 usersArr.push(doc.data());
             });

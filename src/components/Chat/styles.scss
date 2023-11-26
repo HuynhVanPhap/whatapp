@@ -51,26 +51,10 @@
         overflow-y: auto;
         display: flex;
         flex-direction: column; 
-        // align-items: flex-start;
+        flex-flow: column nowrap;
 
-        & > :first-child {
+        &>:first-child {
             margin-top: auto !important;
-        }
-    }
-
-    & > .message-previous {
-        margin-top: 2px;
-        height: auto;
-        width: 100%;
-        font-size: 16px;
-        text-align: center;
-        padding: 10px;
-        
-        & > .message-previous__text {
-            cursor: pointer;
-            font-weight: 700;
-            color: #BCA37F;
-            padding: 10px 7px;
         }
     }
 }

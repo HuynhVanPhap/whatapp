@@ -1,7 +1,5 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, memo } from "react";
 import { Stack, Button } from "@mui/material";
-import { collection, query, where, getDocs, and, orderBy} from "firebase/firestore";
-import { db } from '@/config/firebase';
 import { CommentIcon } from "@/icons";
 import { signOut } from "firebase/auth";
 import { auth } from "@/config/firebase";
@@ -23,38 +21,6 @@ function SideOne({ toggleDisplayNewChat, turnOnDisplayMessageChat  }) {
             return user.displayName.search(upperName(userName)) !== -1 && user;
         }));
     }
-    
-    // Không thực hiện được vì cấu trúc database không phù hợp
-    // const filterUsersChat = async (userName) => {
-    //     const userChatsRef = collection(db, 'userChats');
-    //     const upperDisplayName = (userName !== '') ? upperName(userName) : '';
-
-    //     const searchUserChatsQuery = query(
-    //         userChatsRef,
-    //         orderBy('displayName', 'desc'),
-    //         and(
-    //             and(
-    //                 where('displayName', '>=', upperDisplayName),
-    //                 where('displayName', '<=', upperDisplayName+'\uf8ff')
-    //             ),
-    //             and(
-    //                 where("displayName", "!=", currentUser.displayName)
-    //             )
-    //         )
-    //     );
-
-    //     try {
-    //         const userChatsArr = [];
-    //         const querySnapshot = await getDocs(searchUserChatsQuery);
-
-    //         querySnapshot.forEach((doc) => {
-    //             userChatsArr.push(doc.data());
-    //         });
-    //         setUsers(userChatsArr);
-    //     } catch(error) {
-    //         console.log(`Search user's chats had been error : ${error}`);
-    //     }
-    // }
 
     return (
         <div className="side-one">
@@ -98,4 +64,4 @@ function SideOne({ toggleDisplayNewChat, turnOnDisplayMessageChat  }) {
     );
 }
 
-export default SideOne;
+export default memo(SideOne);

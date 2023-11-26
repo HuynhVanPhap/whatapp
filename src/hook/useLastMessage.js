@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { AuthContext, ChatContext } from "@/context";
 import { db } from '@/config/firebase';
 

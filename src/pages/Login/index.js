@@ -31,10 +31,12 @@ function Login() {
             <form className="login-form" onSubmit={handleOnSubmit}>
                 <Input type="text" name='email' placeholder="Email"/>
                 <Input type="password" name='password' placeholder="Password" icon='password' />
-                { err && <span>Something went wrong..!</span> }
+                { err && <p className="error-text error-auth">Something went wrong..!</p> }
                 <LoginButton title="Login"/>
             </form>
             <p>You don't have an account ? <Link to="/register">Register</Link></p>
+            <p>--- OR ---</p>
+            <p><Link to="/list-account">List Account</Link></p>
         </Box>
     );
 }

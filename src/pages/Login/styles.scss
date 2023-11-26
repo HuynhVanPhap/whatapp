@@ -1,3 +1,6 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
 .MuiBox-root.login-wrap {
     @media (min-width: 1024px) {
         width: 25%;
@@ -11,4 +14,19 @@
         color: #fff;
         margin-bottom: 15px;
     }
+
+    &>p {
+        color: #fff;
+        font-weight: 400;
+        text-align: center;
+
+        &>a {
+            color: $icon-chat-color-weird;
+            font-weight: 700;
+        }
+    }
+}
+
+.error-auth {
+    text-align: center;
 }
